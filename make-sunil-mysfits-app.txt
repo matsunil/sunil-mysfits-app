@@ -1,0 +1,61 @@
+https://github.com/aws-samples/aws-modern-application-workshop/tree/java/module-2
+
+git clone https://github.com/matsunil/sunil-mysfits-app.git
+
+VPCvpc-024c85a769c9ba09d
+Subnet 1subnet-0e24ca10030f0e331
+Subnet 1 route table associationrtbassoc-0ce713975e3b32b69
+Subnet 2subnet-031e2371b5599e1bb
+Subnet 2 route table associationrtbassoc-0a633922c7ca6e22c
+VPC Availability Zonesus-east-1a, us-east-1b, us-east-1c, us-east-1d, us-east-1e, us-east-1f
+Internet gatewayigw-042daae3e9bde5d5b
+Route tablertb-05de71bd5d7260907
+Amazon EC2 routeEC2Co-Publi-SNIL4CC2ZLC
+Virtual private gateway attachmentEC2Co-Attac-U5E16TIWZ66T
+
+docker build -t sunilmysfits:latest . && docker run -p 8080:8080 --rm -it sunilmysfits:latest
+
+http://localhost:8080/mysfits
+
+$(aws ecr get-login --no-include-email --region us-east-1)
+docker build -t sunilmysfits .
+docker tag sunilmysfits:latest 604773387822.dkr.ecr.us-east-1.amazonaws.com/sunilmysfits:latest
+docker push 604773387822.dkr.ecr.us-east-1.amazonaws.com/sunilmysfits:latest
+
+Create Task Definition: https://console.aws.amazon.com/ecs/home?region=us-east-1#/taskDefinitions
+{
+  "executionRoleArn": "arn:aws:iam::604773387822:role/ecsTaskExecutionRole",
+  "containerDefinitions": [{
+    "name": “sunil-mysfits“,
+    "image": "604773387822.dkr.ecr.us-east-1.amazonaws.com/sunilmysfits",
+    "essential": true,
+    "portMappings": [{
+      "hostPort": 80,
+      "protocol": "tcp",
+      "containerPort": 80
+    }]
+  }],
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "networkMode": "awsvpc",
+  "cpu": "256",
+  "memory": "512",
+  "family": “sunil-mysfits“
+}
+
+
+VPCvpc-0679fdccae2a58735
+Subnet 1subnet-03fa700870a137584
+Subnet 1 route table associationrtbassoc-037af18e34b72602b
+Subnet 2subnet-022150eac20511b83
+Subnet 2 route table associationrtbassoc-04c2b1610344cb63a
+VPC Availability Zonesus-east-1a, us-east-1b, us-east-1c, us-east-1d, us-east-1e, us-east-1f
+Internet gatewayigw-0fec3a6734f6c2420
+Route tablertb-0660bd863d16c7193
+Amazon EC2 routeEC2Co-Publi-13H70A66B2CL9
+Virtual private gateway attachmentEC2Co-Attac-84C7LG3QRURO
+
+http://sunil-mysfits-elb-new-610998039.us-east-1.elb.amazonaws.com/mysfits
+
+
