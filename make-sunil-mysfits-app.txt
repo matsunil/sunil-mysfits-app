@@ -58,4 +58,5 @@ Virtual private gateway attachmentEC2Co-Attac-84C7LG3QRURO
 
 http://sunil-mysfits-elb-new-610998039.us-east-1.elb.amazonaws.com/mysfits
 
+imagedefinitions.json
 
